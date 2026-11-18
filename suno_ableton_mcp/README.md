@@ -1,27 +1,37 @@
-# Suno Bridge & Ableton Live MCP Server
+# Suno & Ableton Live Autonomous Agent MCP Server (v2.0)
 
-Un server MCP (Model Context Protocol) standard stdio che permette ad agenti AI (come Antigravity, Cursor, Claude Desktop, ecc.) di controllare **Ableton Live** e comunicare con il protocollo **Suno Bridge**.
+Un server MCP (Model Context Protocol) completo che trasforma qualsiasi agente AI (Antigravity, Cursor, Claude Desktop) in un **produttore musicale autonomo**, in grado sia di controllare **Ableton Live** sia di accedere al tuo account **Suno** per generare e inserire tracce.
 
-## Funzionalità (Tool per l'Agente AI)
+---
 
-1. **`ableton_get_song_info`**: Legge tempo (BPM), metronomo, beat attuale, numero di tracce e scene del progetto.
-2. **`ableton_list_tracks`**: Elenca tutte le tracce presenti (Audio, MIDI, Return).
-3. **`ableton_create_midi_track`**: Crea al volo una traccia MIDI.
-4. **`ableton_create_audio_track`**: Crea al volo una traccia Audio.
-5. **`ableton_insert_midi_notes`**: Inserisce note musicali (pitch, start_time, duration, velocity) direttamente in una clip di Ableton!
-6. **`ableton_transport`**: Avvia/ferma la riproduzione o imposta i BPM (`start`, `stop`, `continue`, `toggle_loop`, `tempo`).
-7. **`ableton_fire_scene`**: Lancia l'esecuzione di una scena della Session View.
-8. **`ableton_load_audio_file`**: Carica un file audio/sample generato da disco in una clip o traccia.
+## 🛠️ Tool Disponibili per l'Agente AI
 
-## Configurazione
+### 1. Gestione Account Suno
+* **`suno_set_token`**: Salva il tuo Bearer Token di Suno (`~/.suno/credentials.json`) per consentire all'agente di operare con il tuo account e i tuoi crediti.
+* **`suno_get_user_info`**: Legge il saldo crediti, il piano attivo e i dati dell'account.
 
-### 1. In Antigravity / Claude Desktop
-Aggiungi nel tuo file di configurazione MCP (`claude_desktop_config.json` o configurazione MCP di Antigravity):
+### 2. Generazione Tracce Suno
+* **`suno_generate_stem`**: Chiama l'API di Suno Cloud per generare parti musicali (Basso, Batteria, Chitarra, Voce, Synth) con prompt e stili specificati.
+* **`suno_get_clip_status`**: Monitora lo stato di rendering e restituisce l'URL audio del take.
+* **`suno_insert_take_to_ableton`**: **Fa tutto in automatico**: scarica il file audio in alta qualità in `User Library/Samples/Suno Imports` e comanda Ableton Live via OSC per creare la traccia e piazzare la clip al loop corrente!
+
+### 3. Controllo DAW Ableton Live
+* **`ableton_get_song_info`**: Legge tempo (BPM), battuta corrente, tracce presenti.
+* **`ableton_list_tracks`**: Elenca tutte le tracce del progetto Live.
+* **`ableton_create_midi_track`** / **`ableton_create_audio_track`**: Crea tracce al volo.
+* **`ableton_insert_midi_notes`**: Compone e scrive sequenze MIDI (note, accordi, ritmi) dentro le clip di Ableton.
+* **`ableton_transport`**: Avvia/ferma la riproduzione o imposta i BPM.
+
+---
+
+## ⚙️ Configurazione
+
+### In Cursor (`.cursor/mcp.json`) o Claude Desktop (`claude_desktop_config.json`)
 
 ```json
 {
   "mcpServers": {
-    "ableton-suno": {
+    "suno-ableton": {
       "command": "python",
       "args": [
         "C:\\Users\\Utente\\Desktop\\suno bridge\\suno_ableton_mcp\\server.py"
@@ -31,19 +41,15 @@ Aggiungi nel tuo file di configurazione MCP (`claude_desktop_config.json` o conf
 }
 ```
 
-### 2. In Cursor (`.cursor/mcp.json`)
-```json
-{
-  "mcpServers": {
-    "ableton-suno": {
-      "command": "python",
-      "args": [
-        "C:/Users/Utente/Desktop/suno bridge/suno_ableton_mcp/server.py"
-      ]
-    }
-  }
-}
-```
+---
 
-## Prerequisiti
-* Ableton Live aperto con la Superficie di Controllo **`Suno_Bridge`** selezionata in *Preferenze -> Link, Tempo & MIDI*.
+## 🔑 Come recuperare il Token del tuo Account Suno
+
+1. Vai su [suno.com](https://suno.com) e accedi con il tuo account.
+2. Premi `F12` per aprire i DevTools del browser.
+3. Vai nella scheda **Network** (Rete), ricarica la pagina o clicca su una sezione.
+4. Clicca su una chiamata qualsiasi verso `studio-api.suno.com` o `api.suno.com`.
+5. Nei **Request Headers**, copia il valore dopo `Authorization: Bearer <TOKEN>`.
+6. Dillo al tuo agente:
+   > *"Ecco il mio token Suno: eyJhbGciOi..."*  
+   L'agente userà il tool `suno_set_token` e lo memorizzerà per tutte le sessioni future.
