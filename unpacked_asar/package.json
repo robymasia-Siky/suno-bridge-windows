@@ -1,0 +1,53 @@
+{
+  "name": "suno-bridge",
+  "productName": "Suno Bridge",
+  "version": "0.7.33",
+  "description": "Suno Bridge — import DAW projects into Suno Studio (Windows Port)",
+  "main": "electron/main.cjs",
+  "author": "Suno",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win --x64"
+  },
+  "build": {
+    "appId": "com.suno.link",
+    "productName": "Suno Bridge",
+    "electronVersion": "33.2.1",
+    "npmRebuild": false,
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "assets/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "files": [
+      "electron/main.cjs",
+      "electron/api/loadApi.cjs",
+      "app/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "suno-control",
+        "to": "suno-control"
+      }
+    ],
+    "protocols": {
+      "name": "suno-link",
+      "schemes": [
+        "suno-link"
+      ]
+    }
+  }
+}

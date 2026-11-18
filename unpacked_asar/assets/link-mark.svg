@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 22 22"
+     width="1024" height="1024"
+     role="img" aria-label="Suno Link">
+  <title>Suno Link</title>
+  <g fill="none"
+     color="#ffffff" stroke="currentColor"
+     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M7.4 6.5L11.9 11L7.4 15.5L2.9 11Z" />
+    <path d="M14.6 6.5L19.1 11L14.6 15.5L10.1 11Z" />
+  </g>
+</svg>

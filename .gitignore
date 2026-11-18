@@ -1,0 +1,26 @@
+# Large binaries and archives
+*.dmg
+*.hfs
+extracted/
+extracted_resources/
+
+# Build artifacts & distribution
+dist/
+win-unpacked/
+*.blockmap
+*.bak
+*.tmp
+*.log
+
+# Dependencies
+node_modules/
+.npm/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# OS files
+Thumbs.db
+.DS_Store

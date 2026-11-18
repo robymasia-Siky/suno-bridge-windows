@@ -1,0 +1,28 @@
+<!--
+  Main app shell. A vertical sidebar selects one screen at a time: Connect
+  (login, reached from the profile button), Import (scan a folder for Ableton
+  projects, then link them into Studio), Export (Studio projects back to .als),
+  Install Suno Bridge (remote-script install + Suno Imports cleanup), Control
+  Monitor (Ableton connection status and diagnostics, the Ableton
+  metadata grid, recent errors), plus the developer Audio / MIDI surfaces and
+  the Suno Bridge log. The page loads from bridge://app (electron/bridgeScheme.ts).
+  CSP locks scripts to 'self'; connects to bridge://audio (local clip audio),
+  localhost (dev) + *.suno.com (prod) + S3 (presigned download host validated
+  server-side via downloadUrlGuard).
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' https://*.amazonaws.com https://*.suno.com https://*.suno.ai; connect-src 'self' bridge://audio http://127.0.0.1:* http://localhost:* https://*.suno.com https://*.suno.ai https://featureassets.org https://featuregates.org https://prodregistryv2.org https://statsigapi.net https://api.statsig.com; script-src 'self'" />
+    <title>Suno Bridge</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="dev.css" />
+    <link rel="stylesheet" href="dist/renderer.css" />
+  </head>
+  <body>
+    <!-- The React renderer mounts the entire UI here; entry is app/react/index.tsx. -->
+    <div id="root"></div>
+    <script type="module" src="dist/renderer.bundle.js"></script>
+  </body>
+</html>
