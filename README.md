@@ -1,5 +1,7 @@
 # Suno Bridge (Windows Edition) & Ableton Live AI Agent (MCP Server)
 
+![Suno Bridge Windows Hero Banner](docs/images/hero-banner.jpg)
+
 Porting completo per **Windows** di **Suno Bridge** (`suno-link` v0.7.33) e **Server MCP Autonomo (Model Context Protocol)** per consentire ad agenti AI (come Antigravity, Cursor, Claude Desktop) di agire come produttori musicali: autenticandosi sul tuo profilo Suno, generando tracce e inserendole in tempo reale dentro **Ableton Live**.
 
 ---
@@ -7,13 +9,14 @@ Porting completo per **Windows** di **Suno Bridge** (`suno-link` v0.7.33) e **Se
 ## 📑 Indice
 
 1. [Panoramica dell'Architettura](#-panoramica-dellarchitettura)
-2. [Installazione del Remote Script in Ableton Live](#-installazione-del-remote-script-in-ableton-live)
-3. [Uso dell'Applicazione Desktop Suno Bridge su Windows](#-uso-dellapplicazione-desktop-suno-bridge-su-windows)
-4. [Come Funziona la Creazione Tracce con Suno](#-come-funziona-la-creazione-tracce-con-suno)
-5. [Server MCP: L'Agente AI Autonomo (Suno + Ableton)](#-server-mcp-lagente-ai-autonomo-suno--ableton)
-6. [Come Ottenere il Token del Profilo Suno](#-come-ottenere-il-token-del-profilo-suno)
-7. [Elenco dei Tool MCP per l'Agente](#-elenco-dei-tool-mcp-per-lagente)
-8. [Esempi di Utilizzo con l'Agente](#-esempi-di-utilizzo-con-lagente)
+2. [Workflow Visivo (Suno Cloud ↔ Ableton Live)](#-workflow-visivo)
+3. [Installazione del Remote Script in Ableton Live](#-installazione-del-remote-script-in-ableton-live)
+4. [Uso dell'Applicazione Desktop Suno Bridge su Windows](#-uso-dellapplicazione-desktop-suno-bridge-su-windows)
+5. [Come Funziona la Creazione Tracce con Suno](#-come-funziona-la-creazione-tracce-con-suno)
+6. [Server MCP: L'Agente AI Autonomo (Suno + Ableton)](#-server-mcp-lagente-ai-autonomo-suno--ableton)
+7. [Come Ottenere il Token del Profilo Suno](#-come-ottenere-il-token-del-profilo-suno)
+8. [Elenco dei Tool MCP per l'Agente](#-elenco-dei-tool-mcp-per-lagente)
+9. [Esempi di Utilizzo con l'Agente](#-esempi-di-utilizzo-con-lagente)
 
 ---
 
@@ -45,6 +48,14 @@ Suno Bridge collega il cloud di Suno Studio con Ableton Live mediante un'archite
 │  - Inserimento Clip all'interno del Loop corrente      │
 └────────────────────────────────────────────────────────┘
 ```
+
+---
+
+## 🔄 Workflow Visivo
+
+![Suno Bridge Workflow Graphic](docs/images/workflow-graphic.jpg)
+
+Dalla generazione dei singoli stem isolati (Drums, Bass, Vocals, Synth) su Suno Cloud fino al posizionamento automatico dentro le tracce della timeline di Ableton Live.
 
 ---
 
@@ -102,6 +113,8 @@ Il flusso di lavoro segue 4 passaggi principali:
 ---
 
 ## 🤖 Server MCP: L'Agente AI Autonomo (Suno + Ableton)
+
+![Ableton Live MCP AI Co-Pilot](docs/images/mcp-copilot.jpg)
 
 Il server MCP situato in `suno_ableton_mcp/server.py` consente a qualsiasi agente AI di comportarsi come **produttore musicale autonomo**. L'agente può:
 * Leggere lo stato del tuo progetto Ableton (tempo, metronomo, tracce presenti).
